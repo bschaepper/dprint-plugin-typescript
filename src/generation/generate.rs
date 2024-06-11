@@ -7191,6 +7191,10 @@ where
   let mut items = PrintItems::new();
   let children_len = opts.items.len();
 
+  if context.config.class_declaration_pad_body == PadBody::Always {
+    items.push_signal(Signal::NewLine);
+  }
+
   for (i, (node, optional_print_items)) in opts.items.into_iter().enumerate() {
     // class declarations may have empty statements
     let is_empty_stmt = node.is::<EmptyStmt>();
@@ -7247,6 +7251,11 @@ where
       None,
       context,
     ));
+  }
+
+
+  if context.config.class_declaration_pad_body == PadBody::Always {
+    items.push_signal(Signal::NewLine);
   }
 
   return items;
