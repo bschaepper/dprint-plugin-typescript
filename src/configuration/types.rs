@@ -17,6 +17,17 @@ pub enum PreferHanging {
 
 generate_str_to_from![PreferHanging, [Never, "never"], [OnlySingleItem, "onlySingleItem"], [Always, "always"]];
 
+#[derive(Clone, PartialEq, Copy, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub enum PadBody {
+  /// Never pad class body
+  Never,
+  /// Always pad class body
+  Always,
+}
+
+generate_str_to_from![PadBody, [Never, "never"], [Always, "always"]];
+
 /// Semi colon possibilities.
 #[derive(Clone, PartialEq, Copy, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -348,6 +359,8 @@ pub struct Configuration {
   pub class_declaration_brace_position: BracePosition,
   #[serde(rename = "classExpression.bracePosition")]
   pub class_expression_brace_position: BracePosition,
+  #[serde(rename = "classDeclaration.padBody")]
+  pub class_declaration_pad_body: PadBody,
   #[serde(rename = "constructor.bracePosition")]
   pub constructor_brace_position: BracePosition,
   #[serde(rename = "doWhileStatement.bracePosition")]

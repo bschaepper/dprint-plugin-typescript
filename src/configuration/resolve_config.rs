@@ -48,6 +48,7 @@ pub fn resolve_config(config: ConfigKeyMap, global_config: &GlobalConfiguration)
 
   let semi_colons = get_value(&mut config, "semiColons", SemiColons::Prefer, &mut diagnostics);
   let brace_position = get_value(&mut config, "bracePosition", BracePosition::SameLineUnlessHanging, &mut diagnostics);
+  let pad_body = get_value(&mut config, "padBody", PadBody::Never, &mut diagnostics);
   let next_control_flow_position = get_value(&mut config, "nextControlFlowPosition", NextControlFlowPosition::SameLine, &mut diagnostics);
   let operator_position = get_value(&mut config, "operatorPosition", OperatorPosition::NextLine, &mut diagnostics);
   let single_body_position = get_value(&mut config, "singleBodyPosition", SameOrNextLinePosition::Maintain, &mut diagnostics);
@@ -126,6 +127,7 @@ pub fn resolve_config(config: ConfigKeyMap, global_config: &GlobalConfiguration)
     arrow_function_brace_position: get_value(&mut config, "arrowFunction.bracePosition", brace_position, &mut diagnostics),
     class_declaration_brace_position: get_value(&mut config, "classDeclaration.bracePosition", brace_position, &mut diagnostics),
     class_expression_brace_position: get_value(&mut config, "classExpression.bracePosition", brace_position, &mut diagnostics),
+    class_declaration_pad_body: get_value(&mut config, "classDeclaration.padBody", pad_body, &mut diagnostics),
     constructor_brace_position: get_value(&mut config, "constructor.bracePosition", brace_position, &mut diagnostics),
     do_while_statement_brace_position: get_value(&mut config, "doWhileStatement.bracePosition", brace_position, &mut diagnostics),
     enum_declaration_brace_position: get_value(&mut config, "enumDeclaration.bracePosition", brace_position, &mut diagnostics),

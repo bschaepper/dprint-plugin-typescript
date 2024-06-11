@@ -1,0 +1,20 @@
+~~ classDeclaration.padBody: always ~~
+== should not pad an empty class body ==
+export class Test {
+}
+
+[expect]
+export class Test {
+}
+
+== should pad a body with a property ==
+export class Test {
+    public prop: any;
+}
+
+[expect]
+export class Test {
+
+    public prop: any;
+
+}

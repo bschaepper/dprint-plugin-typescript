@@ -569,6 +569,10 @@ impl ConfigurationBuilder {
     self.insert("classDeclaration.bracePosition", value.to_string().into())
   }
 
+  pub fn class_declaration_pad_body(&mut self, value: PadBody) -> &mut Self {
+    self.insert("classDeclaration.padBody", value.to_string().into())
+  }
+
   pub fn class_expression_brace_position(&mut self, value: BracePosition) -> &mut Self {
     self.insert("classExpression.bracePosition", value.to_string().into())
   }
@@ -1111,6 +1115,7 @@ mod tests {
       /* brace position*/
       .arrow_function_brace_position(BracePosition::NextLine)
       .class_declaration_brace_position(BracePosition::NextLine)
+      .class_declaration_pad_body(PadBody::Always)
       .class_expression_brace_position(BracePosition::NextLine)
       .constructor_brace_position(BracePosition::NextLine)
       .do_while_statement_brace_position(BracePosition::NextLine)
@@ -1269,7 +1274,7 @@ mod tests {
       .while_statement_space_around(true);
 
     let inner_config = config.get_inner_config();
-    assert_eq!(inner_config.len(), 179);
+    assert_eq!(inner_config.len(), 180);
     let diagnostics = resolve_config(inner_config, &Default::default()).diagnostics;
     assert_eq!(diagnostics.len(), 0);
   }
